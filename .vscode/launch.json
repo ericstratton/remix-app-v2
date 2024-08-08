@@ -1,0 +1,12 @@
+{
+   "version": "0.2.0",
+   "configurations": [
+      {
+         "name": "Debug App",
+         "command": "npm run dev",
+         "type": "node-terminal",
+         "request": "launch",
+         "cwd": "${workspaceFolder}"
+      }
+   ]
+}

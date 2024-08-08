@@ -1,3 +1,78 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+   font-family: 'TheNeue Black';
+   src: url('/fonts/the-neue-black/TheNeue-Black.woff2') format('woff2'),
+      url('/fonts/the-neue-black/TheNeue-Black.woff') format('woff'),
+      url('/fonts/the-neue-black/TheNeue-Black.ttf') format('truetype');
+   font-weight: normal;
+   font-style: normal;
+}
+
+@font-face {
+   font-family: 'League Gothic';
+   src: url('/fonts/league-gothic/LeagueGothic-Regular.woff2') format('woff2'),
+      url('/fonts/league-gothic/LeagueGothic-Regular.woff') format('woff'),
+      url('/fonts/league-gothic/LeagueGothic-Regular.ttf') format('truetype');
+   font-weight: normal;
+   font-style: normal;
+}
+
+@layer base {
+   :root {
+      --background: 23 100% 95%;
+      --foreground: 23 5% 0%;
+      --card: 23 50% 90%;
+      --card-foreground: 23 5% 10%;
+      --popover: 23 100% 95%;
+      --popover-foreground: 23 100% 0%;
+      --primary: 23 29.9% 84.9%;
+      --primary-foreground: 0 0% 0%;
+      --secondary: 23 30% 70%;
+      --secondary-foreground: 0 0% 0%;
+      --muted: -15 30% 85%;
+      --muted-foreground: 23 5% 35%;
+      --accent: -15 30% 80%;
+      --accent-foreground: 23 5% 10%;
+      --destructive: 0 100% 30%;
+      --destructive-foreground: 23 5% 90%;
+      --border: 23 30% 50%;
+      --input: 23 30% 18%;
+      --ring: 23 29.9% 84.9%;
+      --radius: 0rem;
+   }
+
+   .dark {
+      --background: 23 50% 5%;
+      --foreground: 23 5% 90%;
+      --card: 23 50% 0%;
+      --card-foreground: 23 5% 90%;
+      --popover: 23 50% 5%;
+      --popover-foreground: 23 5% 90%;
+      --primary: 23 29.9% 84.9%;
+      --primary-foreground: 0 0% 0%;
+      --secondary: 23 30% 10%;
+      --secondary-foreground: 0 0% 100%;
+      --muted: -15 30% 15%;
+      --muted-foreground: 23 5% 60%;
+      --accent: -15 30% 15%;
+      --accent-foreground: 23 5% 90%;
+      --destructive: 0 100% 30%;
+      --destructive-foreground: 23 5% 90%;
+      --border: 23 30% 18%;
+      --input: 23 30% 18%;
+      --ring: 23 29.9% 84.9%;
+      --radius: 0rem;
+   }
+}
+
+@layer base {
+   * {
+      @apply border-border;
+   }
+   body {
+      @apply bg-background text-foreground;
+   }
+}

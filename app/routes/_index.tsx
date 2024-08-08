@@ -1,48 +1,26 @@
-import type { MetaFunction } from "@remix-run/node";
+import type { MetaFunction } from '@remix-run/node';
+import PageSection from '~/components/pagesection';
 
 export const meta: MetaFunction = () => {
-  return [
-    { title: "New Remix App" },
-    { name: "description", content: "Welcome to Remix!" },
-  ];
+   return [
+      { title: "Hi, I'm Eric Stratton" },
+      { name: 'description', content: 'Welcome to my site.' },
+   ];
 };
 
 export default function Index() {
-  return (
-    <div className="font-sans p-4">
-      <h1 className="text-3xl">Welcome to Remix</h1>
-      <ul className="list-disc mt-4 pl-6 space-y-2">
-        <li>
-          <a
-            className="text-blue-700 underline visited:text-purple-900"
-            target="_blank"
-            href="https://remix.run/start/quickstart"
-            rel="noreferrer"
-          >
-            5m Quick Start
-          </a>
-        </li>
-        <li>
-          <a
-            className="text-blue-700 underline visited:text-purple-900"
-            target="_blank"
-            href="https://remix.run/start/tutorial"
-            rel="noreferrer"
-          >
-            30m Tutorial
-          </a>
-        </li>
-        <li>
-          <a
-            className="text-blue-700 underline visited:text-purple-900"
-            target="_blank"
-            href="https://remix.run/docs"
-            rel="noreferrer"
-          >
-            Remix Docs
-          </a>
-        </li>
-      </ul>
-    </div>
-  );
+   return (
+      <PageSection>
+         <h1 className="font-display mb-6 text-5xl sm:text-7xl md:text-9xl">
+            Eric Stratton
+         </h1>
+         <h2 className="font-medium text-muted-foreground mb-4 text-5xl md:text-7xl">
+            Full-Stack Software Developer
+         </h2>
+         <p className="text-muted-foreground text-xl md:text-2xl">
+            I&apos;m a software developer with a drive for building easy to use
+            and performant applications, and a curiousity for stones unturned.
+         </p>
+      </PageSection>
+   );
 }
