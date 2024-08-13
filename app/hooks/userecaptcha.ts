@@ -14,10 +14,10 @@ declare global {
    }
 }
 
-type UseRecaptchaReturnType = {
-   ready: boolean;
-   getToken: (key?: string, action?: string) => Promise<string>;
-};
+type UseRecaptchaReturnType = [
+   boolean,
+   (key?: string, action?: string) => Promise<string>
+];
 
 /**
  * A hook to interact with the reCAPTCHA v3 API.
@@ -57,7 +57,7 @@ const useRecaptcha = (): UseRecaptchaReturnType => {
       }
    }, []);
 
-   return { ready, getToken };
+   return [ready, getToken];
 };
 
 export default useRecaptcha;

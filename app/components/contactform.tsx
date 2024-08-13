@@ -1,4 +1,6 @@
 import { Form } from '@remix-run/react';
+import { useForm } from '@conform-to/react';
+import { parseWithZod } from '@conform-to/zod';
 import { Input } from './ui/input';
 import { Button } from './ui/button';
 import {
@@ -9,8 +11,17 @@ import {
    CardTitle,
 } from './ui/card';
 import { Label } from './ui/label';
+import schema from '~/lib/formschema';
 
 function ContactForm({ token }: { token: string }) {
+   const [form, fields] = useForm({
+      shouldValidate: 'onBlur',
+      shouldRevalidate: 'onInput',
+      onValidate({ formData }) {
+         return parseWithZod(formData, { schema });
+      },
+   });
+
    return (
       <Card className="w-full max-w-3xl">
          <CardHeader>
@@ -23,19 +34,49 @@ function ContactForm({ token }: { token: string }) {
             </CardDescription>
          </CardHeader>
          <CardContent>
-            <Form method="post" className="space-y-8">
+            <Form
+               method="post"
+               id={form.id}
+               className="space-y-6"
+               onSubmit={form.onSubmit}
+               aria-invalid={form.errors ? true : undefined}
+            >
                <div className="grid gap-2">
-                  <Label htmlFor="name">Name</Label>
-                  <Input name="name" placeholder="Enter your name" required />
+                  <Label htmlFor={fields.name.name} className="text-base">
+                     Name
+                  </Label>
+                  <Input
+                     id={fields.name.id}
+                     name={fields.name.name}
+                     placeholder="Enter your name"
+                     required={fields.name.required}
+                     aria-invalid={fields.email.errors ? true : undefined}
+                     aria-describedby={
+                        fields.email.errors ? fields.email.errorId : undefined
+                     }
+                  />
+                  <div id={fields.name.errorId} className="text-destructive">
+                     {fields.name.errors}
+                  </div>
                </div>
                <div className="grid gap-2">
-                  <Label htmlFor="email">Email</Label>
+                  <Label htmlFor={fields.email.name} className="text-base">
+                     Email
+                  </Label>
                   <Input
-                     name="email"
+                     id={fields.email.id}
+                     name={fields.email.name}
                      type="email"
                      placeholder="Enter your email"
-                     required
+                     required={fields.email.required}
+                     aria-invalid={fields.email.errors ? true : undefined}
+                     aria-describedby={
+                        fields.email.errors ? fields.email.errorId : undefined
+                     }
                   />
+                  <div id={fields.email.errorId} className="text-destructive">
+                     {fields.email.errors}
+                  </div>
                </div>
                <Button
                   variant="secondary"

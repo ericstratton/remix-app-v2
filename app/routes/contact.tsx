@@ -1,4 +1,4 @@
-import { ErrorResponse, Resend } from 'resend';
+import { ErrorResponse } from 'resend';
 import { ActionFunctionArgs, json, MetaFunction } from '@remix-run/node';
 import { renderToString } from 'react-dom/server';
 import { useEffect, useState } from 'react';
@@ -10,8 +10,7 @@ import Email from '~/components/email';
 import verifyRecaptcha from '~/lib/verifyrecaptcha';
 import ErrorCodes from '~/lib/errorcodes';
 import useRecaptcha from '~/hooks/userecaptcha';
-
-const resend = new Resend(process.env.RESEND_API_KEY);
+import sendEmail from '~/lib/sendemail';
 
 export const meta: MetaFunction = () => {
    return [
@@ -20,7 +19,7 @@ export const meta: MetaFunction = () => {
    ];
 };
 
-export const loader = () => {
+export const loader = async () => {
    const siteKey = process.env.RECAPTCHA_SITE_KEY;
 
    return json({ siteKey });
@@ -57,22 +56,8 @@ export const action = async ({ request }: ActionFunctionArgs) => {
       );
    }
 
-   const contactEmail = process.env.CONTACT_EMAIL!;
    const html = renderToString(<Email recipient={name} />);
-   const { data, error } = await resend.batch.send([
-      {
-         from: `Eric Stratton <${contactEmail}>`,
-         to: [email],
-         subject: 'Thank you for reaching out!',
-         html,
-      },
-      {
-         from: `Resend <${contactEmail}>`,
-         to: [contactEmail],
-         subject: 'New contact form submission',
-         text: `Name: ${name}\nEmail: ${email}`,
-      },
-   ]);
+   const { data, error } = await sendEmail(html, email, name);
 
    if (error) {
       return json({ error }, 500);
@@ -121,10 +106,9 @@ function processData(
 export default function ContactPage() {
    const data = useActionData<typeof action>();
    const loaderData = useLoaderData<typeof loader>();
-   const { ready, getToken } = useRecaptcha();
-   const { toast } = useToast();
-
+   const [ready, getToken] = useRecaptcha();
    const [token, setToken] = useState<string>('');
+   const { toast } = useToast();
 
    const siteKey = loaderData?.siteKey;
    useEffect(() => {
