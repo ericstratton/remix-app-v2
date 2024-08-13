@@ -16,7 +16,7 @@ export default function AboutPage() {
             <h2 className="font-display text-4xl mb-4 sm:6xl md:mb-6 md:text-8xl">
                About me
             </h2>
-            <p className="text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed mb-4">
+            <p className="text-muted-foreground md:text-xl/relaxed lg:text-lg/relaxed xl:text-xl/relaxed mb-4">
                I&apos;m a full-stack developer with a passion for creating
                innovative and user-friendly web applications. I have experience
                working with a variety of technologies, including React, Node.js,

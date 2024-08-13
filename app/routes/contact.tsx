@@ -150,7 +150,7 @@ export default function ContactPage() {
             <h2 className="font-display text-4xl mb-4 sm:6xl md:mb-6 md:text-8xl">
                Get in touch
             </h2>
-            <p className="text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed mb-4">
+            <p className="text-muted-foreground md:text-xl/relaxed lg:text-lg/relaxed xl:text-xl/relaxed mb-4">
                If you have any questions or would like to discuss a project,
                feel free to reach out to me using the form below.
             </p>

@@ -20,7 +20,7 @@ export default function ProjectsPage() {
             <h2 className="font-display text-4xl mb-4 sm:6xl md:mb-6 md:text-8xl">
                My projects
             </h2>
-            <p className="text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed mb-4">
+            <p className="text-muted-foreground md:text-xl/relaxed lg:text-lg/relaxed xl:text-xl/relaxed mb-4">
                Here are some of the projects I have worked on. Each project
                showcases my skills in various technologies and problem-solving
                approaches.
